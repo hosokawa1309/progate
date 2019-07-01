@@ -1,6 +1,19 @@
 import PyPDF2
-print("hello hello")
 
-#pdfのインスタンスを生成
-#pdfのパスを指定
-pdf = PyPDF2.PdfFileReader('/')
+merger = PyPDF2.PdfFileMerger()
+
+merger.append('1705.07962.pdf',pages = PyPDF2.pagerange.PageRange(':6'))
+
+merger.write('705.07962_split1.pdf')
+
+merger.close()
+
+
+merger = PyPDF2.PdfFileMerger()
+
+merger.append('1705.07962.pdf',pages = PyPDF2.pagerange.PageRange('6:'))
+
+merger.write('1705.07962_split2.pdf')
+
+merger.close()
+
