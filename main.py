@@ -18,8 +18,8 @@ class pdf_translate():
                 print(str(page.extractText()))
 
     def make_driver(self , path):
-        driver = webdriver.Chrome()
-        driver.get(path)
+        self.driver = webdriver.Chrome()
+        self.driver.get(path)
 
 
 
@@ -30,5 +30,5 @@ if __name__ == '__main__':
         instance = pdf_translate()
         instance.file_open()
     else:
-        print("Error")
+        print("[Error]")
         print("Usage : python main.py 'FILE_PATH'")
