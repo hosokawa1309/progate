@@ -1,19 +1,34 @@
 import PyPDF2
+import sys
+from selenium import webdriver
 
-merger = PyPDF2.PdfFileMerger()
-
-merger.append('1705.07962.pdf',pages = PyPDF2.pagerange.PageRange(':6'))
-
-merger.write('705.07962_split1.pdf')
-
-merger.close()
+class pdf_translate():
+    def __init__(self):
+        #print(args[1])
+        self.FILE_PATH  = '/Users/hosokawa/Documents/paper/1705.07962.pdf'
+        #FILE_PATH = args[1]
 
 
-merger = PyPDF2.PdfFileMerger()
+    def file_open(self):
+        with open(self.FILE_PATH , mode = 'rb') as f:
+            render = PyPDF2.PdfFileReader(f)
+            for page in render.pages:
+                #print(str(type(page)))
+                print(page.extractText())
+                print(str(page.extractText()))
 
-merger.append('1705.07962.pdf',pages = PyPDF2.pagerange.PageRange('6:'))
+    def make_driver(self , path):
+        driver = webdriver.Chrome()
+        driver.get(path)
 
-merger.write('1705.07962_split2.pdf')
 
-merger.close()
 
+
+if __name__ == '__main__':
+    args = sys.argv
+    if 2 == len(args):
+        instance = pdf_translate()
+        instance.file_open()
+    else:
+        print("Error")
+        print("Usage : python main.py 'FILE_PATH'")
