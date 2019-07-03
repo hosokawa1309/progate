@@ -13,7 +13,7 @@ class pdf_translate():
         with open(self.FILE_PATH , mode = 'rb') as f:
             render = PyPDF2.PdfFileReader(f)
             for page in render.pages:
-                #print(str(type(page)))
+                print(str(type(page)))
                 print(page.extractText())
                 print(str(page.extractText()))
 
